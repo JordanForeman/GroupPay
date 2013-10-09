@@ -11,7 +11,39 @@ class DatabaseSeeder extends Seeder {
 	{
 		Eloquent::unguard();
 
-		// $this->call('UserTableSeeder');
+		$this->call('UserTableSeeder');
 	}
 
 }
+
+class UserTableSeeder extends Seeder {
+
+    public function run()
+    {    
+		$USER_SEED_DATA = array();
+		array_push($USER_SEED_DATA, 
+			['name'=>'Jordan Foreman', 'email'=>'me@jordanforeman.com'],
+			['name'=>'Test User1', 'email'=>'testuser1@grouppay.com'],
+			['name'=>'Test User2', 'email'=>'testuser2@grouppay.com']
+		);
+
+        DB::table('users')->delete();
+
+		foreach ($USER_SEED_DATA as $user)
+		{
+			// DEFAULT PASSWORD
+			$password = "abc123";
+			if (isset($user['password']))
+				$password = $user['password'];
+		
+	        User::create(array(
+	        	'name' => $user['name'],
+				'email' => $user['email'],
+				'password' => Hash::make($password)
+	        ));	
+		}
+    }
+
+}
+
+?>
