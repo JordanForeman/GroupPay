@@ -10,6 +10,11 @@
 	<div class="left-sidebar col-md-4">
 		<img src="http://placehold.it/200/200" />
 		<h1>{{ Auth::user()->name }}</h1>
+		
+		<div class="">
+			<a href="#" class="btn btn-success">+ Add Transaction</a>
+			<a href="#" class="btn btn-info"><i class="glyphicon glyphicon-euro"></i> Pay Balance</a>
+		</div>
 	</div>
 	
 	<div class="feed col-md-8">

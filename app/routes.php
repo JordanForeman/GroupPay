@@ -106,4 +106,18 @@ Route::get('users', function()
 	}
 });
 
+Route::post('users', function()
+{
+	$userdata = array(
+		'email' => Input::get('email'),
+		'name' => Input::get('name'),
+		'password' => Hash::make(Input::get('password')),
+		'role' => 'standard'
+	);
+	
+	DB::table('users')->insert($userdata);
+	
+	return Redirect::to('users');
+});
+
 ?>
