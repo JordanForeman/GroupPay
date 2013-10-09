@@ -67,12 +67,29 @@ Route::post('login', function()
 
 Route::get('register', function()
 {
-
+	return View::make('register');
 });
 
 Route::post('register', function()
 {
+	$email = Input::get('email');
+	$password = Hash::make(Input::get('password'));
 
+	$userdata = array(
+		'email' => $email,
+		'name' => Input::get('name'),
+		'password' => $password,
+		'role' => 'standard'
+	);
+	
+	DB::table('users')->insert($userdata);
+	
+	if (Auth::attempt(array('email'=>$email, 'password'=>$password)) )
+		return Redirect::to('dashboard');
+	else
+		return Redirect::to('login');
+	
+	return Redirect::to('dashboard');
 });
 
 Route::get('logout', function()

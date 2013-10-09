@@ -13,7 +13,7 @@
 					<p>
 						<a href="#" class="btn btn-primary btn-lg">Learn More!</a>
 						or
-						<a href="{{ URL::to('login') }}">login</a>
+						<a href="{{ URL::to('register') }}">register</a>
 					</p>
 				</div>
 			</div>

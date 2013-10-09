@@ -92,6 +92,6 @@ Route::filter('csrf', function()
 Route::filter('guest', function()
 {
         if (Auth::check()) 
-                return Redirect::route('home')
+                return Redirect::route('dashboard')
                         ->with('flash_notice', 'You are already logged in!');
 });
