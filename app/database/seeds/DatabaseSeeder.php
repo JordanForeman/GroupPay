@@ -22,7 +22,7 @@ class UserTableSeeder extends Seeder {
     {    
 		$USER_SEED_DATA = array();
 		array_push($USER_SEED_DATA, 
-			['name'=>'Jordan Foreman', 'email'=>'me@jordanforeman.com'],
+			['name'=>'Jordan Foreman', 'email'=>'me@jordanforeman.com', 'role'=>'admin'],
 			['name'=>'Test User1', 'email'=>'testuser1@grouppay.com'],
 			['name'=>'Test User2', 'email'=>'testuser2@grouppay.com']
 		);
@@ -35,11 +35,17 @@ class UserTableSeeder extends Seeder {
 			$password = "abc123";
 			if (isset($user['password']))
 				$password = $user['password'];
+				
+			// DEFAULT ROLE
+			$role = "standard";
+			if (isset($user['role']))
+				$role = $user['role'];
 		
 	        User::create(array(
 	        	'name' => $user['name'],
 				'email' => $user['email'],
-				'password' => Hash::make($password)
+				'password' => Hash::make($password),
+				'role' => $role
 	        ));	
 		}
     }

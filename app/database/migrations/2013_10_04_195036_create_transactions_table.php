@@ -17,9 +17,9 @@ class CreateTransactionsTable extends Migration {
 
 			$table->increments('id');
 			
-			$table->integer('group_id');
+			$table->integer('group_id')->unsigned();
 			
-			$table->integer('user_id');
+			$table->integer('user_id')->unsigned();
 			
 			$table->text('description');
 			//TODO: currently we only support up to 9999.99 in transactions

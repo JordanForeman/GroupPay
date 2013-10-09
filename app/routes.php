@@ -2,6 +2,17 @@
 
 /*
 |--------------------------------------------------------------------------
+| User Roles
+|--------------------------------------------------------------------------
+|
+|
+|
+*/
+
+static $ROLE_ADMIN = "admin";
+
+/*
+|--------------------------------------------------------------------------
 | Application Routes
 |--------------------------------------------------------------------------
 |
@@ -84,8 +95,15 @@ Route::get('dashboard', function()
 Route::get('users', function()
 {
 	$users = User::all();
-
-	return View::make('users')->with('users', $users);
+	
+	if (Auth::check() && Auth::user()->getRole() == "admin")
+	{
+		return View::make('users')->with('users', $users);
+	}
+	else
+	{
+		return Redirect::to('/');
+	}
 });
 
 ?>
