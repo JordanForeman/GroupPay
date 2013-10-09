@@ -16,7 +16,7 @@ Route::get('/', function()
 	if (Auth::check()) {
 		return Redirect::to('dashboard');
 	} else {
-		return Redirect::to('login');
+		return View::make('welcome');
 	}
 });
 
