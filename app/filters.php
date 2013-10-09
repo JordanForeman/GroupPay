@@ -78,3 +78,20 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+/*
+|--------------------------------------------------------------------------
+| Guest Filter
+|--------------------------------------------------------------------------
+|
+| Filters out users that are already authenticated. You don't need to log in
+| again silly!
+|
+*/
+
+Route::filter('guest', function()
+{
+        if (Auth::check()) 
+                return Redirect::route('home')
+                        ->with('flash_notice', 'You are already logged in!');
+});

@@ -5,7 +5,7 @@
 <div class="container">
 	<div class="row">
 
-		{{ Form::open(['login']) }}
+		{{ Form::open(array('url'=>'login', 'method'=>'post')) }}
 
 			<!-- check for login errors flash var -->
 			@if (Session::has('login_errors'))
@@ -15,7 +15,7 @@
 			<!-- username field -->
 			<div class="form-group">
 				<p>{{ Form::label('email', 'Email') }}</p>
-				<p>{{ Form::text('username', null, ['class'=>'form-control', 'required']) }}</p>
+				<p>{{ Form::text('email', null, ['class'=>'form-control', 'required']) }}</p>
 			</div>
 
 			<!-- password field -->
@@ -26,8 +26,8 @@
 
 			<!-- submit button -->
 			<p>
-				{{ Form::submit('Login', ['class'=>'btn btn-default', 'required']) }}
-				<a href="/register" class="btn btn-primary">Register</a>
+				{{ Form::submit('Login', ['class'=>'btn btn-default']) }}
+				<a href="register" class="btn btn-primary">Register</a>
 			</p>
 
 		{{ Form::close() }}

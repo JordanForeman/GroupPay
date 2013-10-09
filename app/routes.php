@@ -13,32 +13,36 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	if (Auth::check()) {
+		return Redirect::to('dashboard');
+	} else {
+		return Redirect::to('login');
+	}
 });
 
-Route::get('users', function()
-{
-	$users = User::all();
-
-	return View::make('users')->with('users', $users);
-});
-
-Route::get('register', function()
-{
-
-});
+/*
+|--------------------------------------------------------------------------
+| Auth Routes
+|--------------------------------------------------------------------------
+*/
 
 Route::get('login', function()
 {
 	return View::make('login');
-});
+})->before('guest');
 
 Route::post('login', function()
 {
+	$email = Input::get('email');
+	$password = Input::get('password');
+	//$password = Hash::make($password);
+
+	//$password = '$2y$08$CfM3/L.DMZfjVfHGAnU8Gu9sZQcS8qMC3dvZEzT9lqiZUddFrEkQ.';
+
 	// get POST data
 	$userdata = array(
-		'email' => Input::get('email'),
-		'password' => Input::get('password')
+		'email' => $email,
+		'password' => $password
 	);
 
 	if (Auth::attempt($userdata))
@@ -51,6 +55,16 @@ Route::post('login', function()
 		// auth failure! lets go back to login
 		return Redirect::to('login')->with('login_errors', true);
 	}
+})->before('guest');
+
+Route::get('register', function()
+{
+
+});
+
+Route::post('register', function()
+{
+
 });
 
 Route::get('logout', function()
@@ -59,9 +73,27 @@ Route::get('logout', function()
 	return Redirect::to('login');
 });
 
-Route::get('home', function()
+Route::get('dashboard', function()
 {
-	return View::make('home');
+
+});
+
+// Route::get('/', function()
+// {
+// 	return View::make('hello');
+// });
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('users', function()
+{
+	$users = User::all();
+
+	return View::make('users')->with('users', $users);
 });
 
 ?>
