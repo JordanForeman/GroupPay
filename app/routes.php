@@ -35,9 +35,6 @@ Route::post('login', function()
 {
 	$email = Input::get('email');
 	$password = Input::get('password');
-	//$password = Hash::make($password);
-
-	//$password = '$2y$08$CfM3/L.DMZfjVfHGAnU8Gu9sZQcS8qMC3dvZEzT9lqiZUddFrEkQ.';
 
 	// get POST data
 	$userdata = array(
@@ -48,7 +45,7 @@ Route::post('login', function()
 	if (Auth::attempt($userdata))
 	{
 		// we are now logged in, go to home
-		return Redirect::to('home');
+		return Redirect::to('dashboard');
 	}
 	else
 	{
@@ -75,13 +72,8 @@ Route::get('logout', function()
 
 Route::get('dashboard', function()
 {
-
+	return View::make('dashboard');
 });
-
-// Route::get('/', function()
-// {
-// 	return View::make('hello');
-// });
 
 /*
 |--------------------------------------------------------------------------

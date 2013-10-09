@@ -2,7 +2,6 @@
 
 @section('content')
 
-<div class="container">
 	<div class="row">
 
 		{{ Form::open(array('url'=>'login', 'method'=>'post')) }}
@@ -33,5 +32,5 @@
 		{{ Form::close() }}
 
 	</div>
-</div>
+	
 @stop
