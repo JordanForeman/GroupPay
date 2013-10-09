@@ -72,6 +72,9 @@ Route::get('register', function()
 
 Route::post('register', function()
 {
+	if (Input::get('password') != Input::get('confirmPassword'))
+		return Redirect::to('register'); //TODO: add custom error message - passwords don't match
+
 	$email = Input::get('email');
 	$password = Hash::make(Input::get('password'));
 
@@ -84,6 +87,7 @@ Route::post('register', function()
 	
 	DB::table('users')->insert($userdata);
 	
+	//TODO: Login attempt always fails
 	if (Auth::attempt(array('email'=>$email, 'password'=>$password)) )
 		return Redirect::to('dashboard');
 	else
@@ -109,19 +113,13 @@ Route::get('dashboard', function()
 |--------------------------------------------------------------------------
 */
 
-Route::get('users', function()
-{
-	$users = User::all();
-	
-	if (Auth::check() && Auth::user()->getRole() == "admin")
-	{
+Route::get('users', array(
+	'before'=>'isAdmin', 
+	function() {
+		$users = User::all();
 		return View::make('users')->with('users', $users);
-	}
-	else
-	{
-		return Redirect::to('/');
-	}
-});
+	})
+);
 
 Route::post('users', function()
 {

@@ -95,3 +95,9 @@ Route::filter('guest', function()
                 return Redirect::route('dashboard')
                         ->with('flash_notice', 'You are already logged in!');
 });
+
+Route::filter('isAdmin', function()
+{
+	if (!Auth::user() || Auth::user()->getRole() != 'admin')
+		return Redirect::to('/')->with('flash_notice', 'Insufficient Permissions');
+});

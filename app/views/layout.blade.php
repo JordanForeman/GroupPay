@@ -108,6 +108,10 @@
 		</div>
 		
 		<div class="container">
+
+			@if (Session::has('flash_notice'))
+				<div class="alert alert-danger">{{ Session::get('flash_notice') }}</div>
+			@endif
 		
 			@yield('content')
 		
