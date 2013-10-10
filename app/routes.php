@@ -102,10 +102,13 @@ Route::get('logout', function()
 	return Redirect::to('login');
 });
 
-Route::get('dashboard', function()
-{
-	return View::make('dashboard');
-});
+Route::get('dashboard', array(
+	'before'=>'auth',
+	function()
+	{
+		return View::make('dashboard');
+	})
+);
 
 /*
 |--------------------------------------------------------------------------
@@ -134,5 +137,7 @@ Route::post('users', function()
 	
 	return Redirect::to('users');
 });
+
+Route::controller('user', 'UserController');
 
 ?>

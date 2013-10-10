@@ -19,6 +19,7 @@
 							<th>Name</th>
 							<th>email</th>
 							<th>&nbsp;</th>
+							<th>&nbsp;</th>
 						</tr>
 					</thead>
 
@@ -32,6 +33,11 @@
 							<td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
 							<!-- Implement Deleting of Users -->
 							<td><a href="{{ URL::to('users') }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to do that? Deleting a user cannot be undone!');"><i class="glyphicon glyphicon-trash"></i>&nbsp; Delete User</a></td>
+							@if ($user->getRole() != 'admin')
+							<td><a href="#" class="btn btn-warning" onclick="">Make Admin</a></td>
+							@else
+							<td><a href="#" class="btn btn-danger" onclick="">Demote</a></td>
+							@endif
 						</tr>
 
 					@endforeach

@@ -96,6 +96,12 @@ Route::filter('guest', function()
                         ->with('flash_notice', 'You are already logged in!');
 });
 
+Route::filter('auth', function()
+{
+	if (!Auth::user())
+		return Redirect::to('/')->with('flash_notice', 'You must log in to do that!');
+});
+
 Route::filter('isAdmin', function()
 {
 	if (!Auth::user() || Auth::user()->getRole() != 'admin')
