@@ -140,4 +140,24 @@ Route::post('users', function()
 
 Route::controller('user', 'UserController');
 
+/*
+|--------------------------------------------------------------------------
+| User Action Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('addTransaction', array(
+	'before'=>'auth',
+	function(){
+		return View::make('addTransaction');
+	})
+);
+
+Route::get('settings', array(
+	'before'=>'auth',
+	function(){
+		return View::make('settings');
+	})
+);
+
 ?>

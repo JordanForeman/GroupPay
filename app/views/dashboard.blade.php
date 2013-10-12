@@ -12,7 +12,7 @@
 		<h1>{{ Auth::user()->name }}</h1>
 		
 		<div class="">
-			<a href="#" class="btn btn-success">+ Add Transaction</a>
+			<a href="{{ URL::to('addTransaction') }}" class="btn btn-success">+ Add Transaction</a>
 			<a href="#" class="btn btn-info"><i class="glyphicon glyphicon-euro"></i> Pay Balance</a>
 		</div>
 	</div>

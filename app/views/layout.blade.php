@@ -92,7 +92,7 @@
 								</a>
 								
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="#">Account</a></li>
+									<li><a href="{{ URL::to('settings') }}">Settings</a></li>
 									<li><a href="{{ URL::to('logout'); }}">Logout</a></li>
 								</ul>
 								
