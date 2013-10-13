@@ -3,10 +3,6 @@
 @section ('content')
 
 <div class="row">
-	<p>This is the Dashboard, beeotches!</p>
-</div>
-
-<div class="row">
 	<div class="left-sidebar col-md-4">
 		<img src="http://placehold.it/200/200" />
 		<h1>{{ Auth::user()->name }}</h1>
