@@ -37,10 +37,12 @@ Route::get('/', function()
 |--------------------------------------------------------------------------
 */
 
-Route::get('login', function()
-{
-	return View::make('login');
-})->before('guest');
+Route::get('login', array(
+	'before'=>'guest',
+	function(){
+		return View::make('login');
+	})
+);
 
 Route::post('login', function()
 {
